@@ -11,7 +11,7 @@
 	</appender>
 	
 	<!-- Application Loggers -->
-	<logger name="com.sunghyun.board">
+	<logger name="com.sunghyun.ucampus">
 		<level value="info" />
 	</logger>
 	
