@@ -11,5 +11,6 @@
 	<P>"처음 만든 버튼"을 누르셨습니다!</P>
 	<P>DB Result : ${content0}</P>
 	<P>DB Result : ${content1}</P>
+	<P>DB Result : ${content2}</P>
 </body>
 </html>
