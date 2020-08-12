@@ -4,11 +4,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>sample</title>
+<title>board</title>
 </head>
 <body>
 	<h1>Begin Project!</h1>
 	<P>"처음 만든 버튼"을 누르셨습니다!</P>
-	<P>DB Result : ${dbResult}</P>
+	<P>DB Result : ${content0}</P>
+	<P>DB Result : ${content1}</P>
 </body>
 </html>
