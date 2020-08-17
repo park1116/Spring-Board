@@ -17,4 +17,14 @@ public class BoardServiceImpl implements BoardService{
 	public List<BoardDto> selectData() throws Exception {
 		return boardDao.selectData();
 	}
+	
+	@Override
+	public List<BoardDto> searchData(String title) throws Exception {
+		return boardDao.searchData(title);
+	}
+
+	@Override
+	public int insertData(BoardDto dto) throws Exception {
+		return boardDao.insertData(dto);
+	}
 }

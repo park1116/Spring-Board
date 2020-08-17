@@ -3,9 +3,15 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="sql">
+	<select id="selectTable" resultType="com.sunghyun.board.dto.BoardDto">
+        select * from board order by num desc, regdate desc
+    </select>
     
-    <select id="selectTable" resultType="com.sunghyun.board.dto.BoardDto">
-        select * from board
+    <select id="searchData" resultType="com.sunghyun.board.dto.BoardDto" parameterType="string">
+		select * from board where title like CONCAT('%',#{searchData},'%') order by num desc, regdate desc
     </select>
   
+  	<insert id="insertData" parameterType="com.sunghyun.board.dto.BoardDto">
+  		insert into board values ((select ifnull(MAX(num)+1, 1) from board b),#{title},#{content},#{name},now())
+  	</insert>
 </mapper>

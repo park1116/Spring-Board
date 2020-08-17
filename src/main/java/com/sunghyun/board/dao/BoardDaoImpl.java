@@ -17,4 +17,14 @@ public class BoardDaoImpl implements BoardDao{
 	public List<BoardDto> selectData() throws Exception {
 		return sqlSession.selectList("sql.selectTable");
 	}
+	
+	@Override
+	public List<BoardDto> searchData(String title) throws Exception {
+		return sqlSession.selectList("sql.searchData", title);
+	}
+	
+	@Override
+	public int insertData(BoardDto dto) throws Exception {
+		return sqlSession.insert("sql.insertData", dto);
+	}
 }
