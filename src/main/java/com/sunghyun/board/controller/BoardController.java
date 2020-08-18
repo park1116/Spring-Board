@@ -18,7 +18,7 @@ public class BoardController {
 	@RequestMapping("/")
 	public ModelAndView select(ModelAndView mv) throws Exception {
 		mv.setViewName("main");
-		mv.addObject("list", service.selectData());	
+		mv.addObject("list", service.selectData());
 		return mv;
 	}
 	
@@ -46,15 +46,24 @@ public class BoardController {
 	public ModelAndView search(ModelAndView mv, HttpServletRequest request) throws Exception {
 		String title = request.getParameter("searchData");
 		mv.setViewName("main");
-		mv.addObject("list", service.searchData(title));	
+		mv.addObject("list", service.searchData(title));
 		return mv;
 	}
 
 	@RequestMapping("/read")
 	public ModelAndView read(ModelAndView mv, HttpServletRequest request) throws Exception {
-		String content = request.getParameter("content");
-		System.out.println(content);
-		mv.setViewName("main");	
+		String title = request.getParameter("title");
+		mv.setViewName("read");
+		mv.addObject("dto", service.readData(title));
+		return mv;
+	}
+	
+	@RequestMapping("/delete")
+	public ModelAndView delete(ModelAndView mv, HttpServletRequest request) throws Exception {
+		int num = Integer.parseInt(request.getParameter("num"));
+		service.deleteData(num);
+		mv.setViewName("main");
+		mv.addObject("list", service.selectData());
 		return mv;
 	}
 }

@@ -7,6 +7,10 @@
         select * from board order by num desc, regdate desc
     </select>
     
+	<select id="readData" resultType="com.sunghyun.board.dto.BoardDto" parameterType="string">
+        select * from board where title like #{title}
+    </select>
+    
     <select id="searchData" resultType="com.sunghyun.board.dto.BoardDto" parameterType="string">
 		select * from board where title like CONCAT('%',#{searchData},'%') order by num desc, regdate desc
     </select>
@@ -14,4 +18,8 @@
   	<insert id="insertData" parameterType="com.sunghyun.board.dto.BoardDto">
   		insert into board values ((select ifnull(MAX(num)+1, 1) from board b),#{title},#{content},#{name},now())
   	</insert>
+  	
+  	<delete id="deleteData" parameterType="integer">
+  		delete from board where num=#{num}
+  	</delete>
 </mapper>

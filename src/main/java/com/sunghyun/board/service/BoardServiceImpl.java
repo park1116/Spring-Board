@@ -27,4 +27,14 @@ public class BoardServiceImpl implements BoardService{
 	public int insertData(BoardDto dto) throws Exception {
 		return boardDao.insertData(dto);
 	}
+
+	@Override
+	public BoardDto readData(String title) throws Exception {
+		return boardDao.readData(title);
+	}
+
+	@Override
+	public void deleteData(int num) throws Exception {
+		boardDao.deleteData(num);
+	}
 }

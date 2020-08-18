@@ -27,4 +27,15 @@ public class BoardDaoImpl implements BoardDao{
 	public int insertData(BoardDto dto) throws Exception {
 		return sqlSession.insert("sql.insertData", dto);
 	}
+
+	@Override
+	public BoardDto readData(String title) throws Exception {
+		return sqlSession.selectOne("sql.readData", title);
+	}
+
+	@Override
+	public void deleteData(int num) throws Exception {
+		sqlSession.delete("sql.deleteData", num);
+		
+	}
 }
