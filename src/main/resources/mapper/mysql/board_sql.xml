@@ -22,4 +22,8 @@
   	<delete id="deleteData" parameterType="integer">
   		delete from board where num=#{num}
   	</delete>
+  	
+  	<update id="updateData" parameterType="com.sunghyun.board.dto.BoardDto">
+  		update board set title=#{title}, content=#{content}, name=#{name}, regdate=now() where num=#{num}
+  	</update>
 </mapper>

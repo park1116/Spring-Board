@@ -33,9 +33,10 @@ table {
 			<td colspan="3">${dto.content}</td>
 		</tr>
 	</table>
-	<div align="right" style="padding: 1%;">
+	<div align="center" style="padding: 1%;">
+		<button type="button" onclick="reviseData('${dto.title}')">수정</button>
+		<button type="button" onclick="location=''">목록으로</button>
 		<button type="button" onclick="deleteData('${dto.title}')">삭제</button>
-		<button type="button" onclick="history.back(-1)">목록으로</button>
 	</div>
 </body>
 <script type="text/javascript">
@@ -46,6 +47,10 @@ function deleteData(title){
 	}else{
 		location.reload();
 	}
+}
+
+function reviseData(title){
+	location.href="/revise?title="+title+"";	
 }
 </script>
 </html>

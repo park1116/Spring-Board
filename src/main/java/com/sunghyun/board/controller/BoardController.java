@@ -66,4 +66,28 @@ public class BoardController {
 		mv.addObject("list", service.selectData());
 		return mv;
 	}
+	
+	@RequestMapping("/revise")
+	public ModelAndView revise(ModelAndView mv, HttpServletRequest request) throws Exception {
+		String title = request.getParameter("title");
+		mv.setViewName("revise");
+		mv.addObject("dto", service.readData(title));
+		return mv;
+	}
+
+	@RequestMapping("/update")
+	public ModelAndView update(ModelAndView mv,HttpServletRequest request) throws Exception {
+		int num = Integer.parseInt(request.getParameter("num"));
+		String title = request.getParameter("title");
+		String name = request.getParameter("name");
+		String content = request.getParameter("content");
+		BoardDto dto = new BoardDto();
+		dto.setNum(num);
+		dto.setTitle(title);
+		dto.setName(name);
+		dto.setContent(content);
+		mv.setViewName("read");
+		mv.addObject("dto", service.updateData(dto));
+		return mv;
+	}
 }

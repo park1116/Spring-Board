@@ -38,4 +38,9 @@ public class BoardDaoImpl implements BoardDao{
 		sqlSession.delete("sql.deleteData", num);
 		
 	}
+
+	@Override
+	public int updateData(BoardDto dto) throws Exception {
+		return sqlSession.update("sql.updateData", dto);
+	}
 }
