@@ -30,16 +30,24 @@ public class BoardController {
 	}
 	
 	@RequestMapping("/insert")
-	public String isnert(HttpServletRequest request) throws Exception {
+	public ModelAndView isnert(ModelAndView mv, HttpServletRequest request) throws Exception {
 		String title = request.getParameter("title");
 		String name = request.getParameter("name");
 		String content = request.getParameter("content");
-		BoardDto dto = new BoardDto();
-		dto.setTitle(title);
-		dto.setName(name);
-		dto.setContent(content);
-		service.insertData(dto);
-		return "redirect:";
+		BoardDto check = (BoardDto) service.readData(title);
+		if(check == null) {
+			BoardDto dto = new BoardDto();
+			dto.setTitle(title);
+			dto.setName(name);
+			dto.setContent(content);
+			service.insertData(dto);
+			mv.setViewName("main");
+			mv.addObject("list", service.selectData());
+		} else {
+			mv.setViewName("create");
+			mv.addObject("check", "false");
+		}
+		return mv;
 	}
 	
 	@RequestMapping("/search")

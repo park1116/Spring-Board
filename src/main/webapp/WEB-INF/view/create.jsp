@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
 <style type="text/css">
 table, th, td {
     border: 1px solid black;
@@ -14,7 +16,7 @@ table {
 <title>글쓰기</title>
 </head>
 <body>
-	<form action="/insert" method="post">
+	<form action="/insert" method="post" accept-charset="utf-8">
 		<table style="width: 98%; margin: 1%;">
 			<tr>
 				<td style="width: 10%;" align="center">제목</td>
@@ -41,4 +43,11 @@ table {
 		</div>
 	</form>	
 </body>
+<script type="text/javascript">
+$(document).ready(function(){
+	var check = ${check};
+	if(check == false)
+		alert("중복된 제목이 존재합니다.");
+});
+</script>
 </html>
