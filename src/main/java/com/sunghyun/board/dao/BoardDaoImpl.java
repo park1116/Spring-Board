@@ -43,4 +43,9 @@ public class BoardDaoImpl implements BoardDao{
 	public int updateData(BoardDto dto) throws Exception {
 		return sqlSession.update("sql.updateData", dto);
 	}
+
+	@Override
+	public BoardDto numData(int num) throws Exception {
+		return sqlSession.selectOne("sql.numData");
+	}
 }

@@ -43,4 +43,9 @@ public class BoardServiceImpl implements BoardService{
 		boardDao.updateData(dto);
 		return boardDao.readData(dto.getTitle());
 	}
+
+	@Override
+	public BoardDto numData(int num) throws Exception {
+		return boardDao.numData(num);
+	}
 }

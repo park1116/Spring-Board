@@ -39,7 +39,7 @@ table {
 		</table>
 		<div align="right" style="padding: 1%;">
 			<button type="submit">등록</button>
-			<button type="button" onclick="history.back(-1)">취소</button>
+			<button type="button" onclick="location='/'">취소</button>
 		</div>
 	</form>	
 </body>

@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
 <style type="text/css">
 table, th, td {
 	border: 1px solid black;
@@ -44,8 +45,15 @@ table {
 		</table>
 		<div align="center" style="padding: 1%;">
 			<button type="submit">완료</button>
-			<button type="button" onclick="history.back(-1)">취소</button>
+			<button type="button" onclick="history.back()">취소</button>
 		</div>
 	</form>	
 </body>
+<script type="text/javascript">
+$(document).ready(function(){
+	var check = ${check};
+	if(check == false)
+		alert("중복된 제목이 존재합니다.");
+});
+</script>
 </html>

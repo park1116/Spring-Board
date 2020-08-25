@@ -11,6 +11,10 @@
         select * from board where title like #{title}
     </select>
     
+    <select id="numData" resultType="com.sunghyun.board.dto.BoardDto" parameterType="integer">
+        select * from board where num=#{num}
+    </select>
+    
     <select id="searchData" resultType="com.sunghyun.board.dto.BoardDto" parameterType="string">
 		select * from board where title like CONCAT('%',#{searchData},'%') order by num desc
     </select>
