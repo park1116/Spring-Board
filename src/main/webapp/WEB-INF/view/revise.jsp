@@ -2,7 +2,6 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
 <style type="text/css">
 table, th, td {
 	border: 1px solid black;
@@ -49,11 +48,4 @@ table {
 		</div>
 	</form>	
 </body>
-<script type="text/javascript">
-$(document).ready(function(){
-	var check = ${check};
-	if(check == false)
-		alert("중복된 제목이 존재합니다.");
-});
-</script>
 </html>
