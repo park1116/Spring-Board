@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.sunghyun.board.dto.BoardDto;
+import com.sunghyun.board.dto.PagingDto;
 
 @Repository("boardDao")
 public class BoardDaoImpl implements BoardDao{
@@ -52,5 +53,15 @@ public class BoardDaoImpl implements BoardDao{
 	@Override
 	public BoardDto checkData(BoardDto dto) throws Exception {
 		return sqlSession.selectOne("sql.checkData", dto);
+	}
+
+	@Override
+	public int countBoard() {
+		return sqlSession.selectOne("sql.countBoard");
+	}
+
+	@Override
+	public List<BoardDto> selectBoard(PagingDto dto) {
+		return sqlSession.selectList("sql.selectBoard", dto);
 	}
 }

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.sunghyun.board.dao.BoardDao;
 import com.sunghyun.board.dto.BoardDto;
+import com.sunghyun.board.dto.PagingDto;
 
 @Service("boardService")
 public class BoardServiceImpl implements BoardService{
@@ -52,5 +53,15 @@ public class BoardServiceImpl implements BoardService{
 	@Override
 	public BoardDto checkData(BoardDto dto) throws Exception {
 		return boardDao.checkData(dto);
+	}
+
+	@Override
+	public int countBoard() {
+		return boardDao.countBoard();
+	}
+
+	@Override
+	public List<BoardDto> selectBoard(PagingDto dto) {
+		return boardDao.selectBoard(dto);
 	}
 }

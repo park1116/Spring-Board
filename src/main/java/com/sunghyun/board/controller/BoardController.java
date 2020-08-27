@@ -5,9 +5,11 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.sunghyun.board.dto.BoardDto;
+import com.sunghyun.board.dto.PagingDto;
 import com.sunghyun.board.service.BoardService;
 
 @Controller
@@ -16,9 +18,23 @@ public class BoardController {
 	private BoardService service;
 
 	@RequestMapping("/")
-	public ModelAndView select(ModelAndView mv) throws Exception {
+	public ModelAndView select(ModelAndView mv, 
+			@RequestParam(value="nowPage", required=false)String nowPage, 
+			@RequestParam(value="cntPerPage", required=false)String cntPerPage) throws Exception {
+		int total = service.countBoard();
+		if (nowPage == null && cntPerPage == null) {
+			nowPage = "1";
+			cntPerPage = "5";
+		} else if (nowPage == null) {
+			nowPage = "1";
+		} else if (cntPerPage == null) { 
+			cntPerPage = "5";
+		}
+		PagingDto dto = new PagingDto(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+		
 		mv.setViewName("main");
-		mv.addObject("list", service.selectData());
+		mv.addObject("paging", dto);
+		mv.addObject("list", service.selectBoard(dto));
 		return mv;
 	}
 	
