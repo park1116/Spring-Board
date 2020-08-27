@@ -48,4 +48,9 @@ public class BoardServiceImpl implements BoardService{
 	public BoardDto numData(int num) throws Exception {
 		return boardDao.numData(num);
 	}
+
+	@Override
+	public BoardDto checkData(BoardDto dto) throws Exception {
+		return boardDao.checkData(dto);
+	}
 }

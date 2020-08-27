@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
 <style type="text/css">
 table, th, td {
 	border: 1px solid black;
@@ -42,6 +43,12 @@ table {
 	</div>
 </body>
 <script type="text/javascript">
+$(document).ready(function(){
+	var check = ${check};
+	if(check == false)
+		alert("중복된 제목이 존재합니다.");
+});
+
 function deleteData(title, num){
 	var result = confirm(num+"번 글\n정말로 '"+title+"' 글을 삭제하시겠습니까?");
 	if(result){

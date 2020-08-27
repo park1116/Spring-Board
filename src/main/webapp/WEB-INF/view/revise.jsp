@@ -44,8 +44,13 @@ table {
 		</table>
 		<div align="center" style="padding: 1%;">
 			<button type="submit">완료</button>
-			<button type="button" onclick="history.back()">취소</button>
+			<button type="button" onclick="read('${dto.title}')">취소</button>
 		</div>
 	</form>	
 </body>
+<script type="text/javascript">
+function read(title) {
+	location.href="/read?title="+encodeURI(title);
+}
+</script>
 </html>

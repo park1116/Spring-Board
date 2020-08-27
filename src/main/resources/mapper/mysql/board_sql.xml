@@ -15,6 +15,10 @@
         select * from board where num=#{num}
     </select>
     
+    <select id="checkData" resultType="com.sunghyun.board.dto.BoardDto" parameterType="com.sunghyun.board.dto.BoardDto">
+        select * from board where title=#{title} and num not in (#{num})
+    </select>
+    
     <select id="searchData" resultType="com.sunghyun.board.dto.BoardDto" parameterType="string">
 		select * from board where title like CONCAT('%',#{searchData},'%') order by num desc
     </select>

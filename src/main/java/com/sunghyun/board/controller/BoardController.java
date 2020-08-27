@@ -62,6 +62,7 @@ public class BoardController {
 	public ModelAndView read(ModelAndView mv, HttpServletRequest request) throws Exception {
 		String title = request.getParameter("title");
 		mv.setViewName("read");
+		mv.addObject("check", "true");
 		mv.addObject("dto", service.readData(title));
 		return mv;
 	}
@@ -89,17 +90,18 @@ public class BoardController {
 		String title = request.getParameter("title");
 		String name = request.getParameter("name");
 		String content = request.getParameter("content");
-		BoardDto check = service.readData(title);
+		BoardDto dto = new BoardDto();
+		dto.setNum(num);
+		dto.setTitle(title);
+		dto.setName(name);
+		dto.setContent(content);
+		BoardDto check = service.checkData(dto);
 		if(check == null) {
-			BoardDto dto = new BoardDto();
-			dto.setNum(num);
-			dto.setTitle(title);
-			dto.setName(name);
-			dto.setContent(content);
 			mv.setViewName("read");
+			mv.addObject("check", "true");
 			mv.addObject("dto", service.updateData(dto));
 		} else {
-			mv.setViewName("");
+			mv.setViewName("read");
 			mv.addObject("check", "false");
 			mv.addObject("dto", service.numData(num));
 		}

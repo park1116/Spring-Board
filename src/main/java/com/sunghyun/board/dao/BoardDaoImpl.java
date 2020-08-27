@@ -46,6 +46,11 @@ public class BoardDaoImpl implements BoardDao{
 
 	@Override
 	public BoardDto numData(int num) throws Exception {
-		return sqlSession.selectOne("sql.numData");
+		return sqlSession.selectOne("sql.numData", num);
+	}
+
+	@Override
+	public BoardDto checkData(BoardDto dto) throws Exception {
+		return sqlSession.selectOne("sql.checkData", dto);
 	}
 }

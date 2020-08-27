@@ -12,4 +12,5 @@ public interface BoardService {
 	public int insertData(BoardDto dto) throws Exception;
 	public void deleteData(int num) throws Exception;
 	public BoardDto updateData(BoardDto dto) throws Exception;
+	public BoardDto checkData(BoardDto dto) throws Exception;
 }
