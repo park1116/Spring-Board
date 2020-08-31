@@ -1,5 +1,7 @@
 package com.sunghyun.board.controller;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
@@ -16,6 +18,8 @@ import com.sunghyun.board.service.BoardService;
 public class BoardController {
 	@Resource(name = "boardService")
 	private BoardService service;
+	private static String S_nowPage = "1";
+	private static String S_cntPerPage = "3";
 
 	@RequestMapping("/")
 	public ModelAndView select(ModelAndView mv, 
@@ -23,12 +27,12 @@ public class BoardController {
 			@RequestParam(value="cntPerPage", required=false)String cntPerPage) throws Exception {
 		int total = service.countBoard();
 		if (nowPage == null && cntPerPage == null) {
-			nowPage = "1";
-			cntPerPage = "5";
+			nowPage = S_nowPage;
+			cntPerPage = S_cntPerPage;
 		} else if (nowPage == null) {
-			nowPage = "1";
+			nowPage = S_nowPage;
 		} else if (cntPerPage == null) { 
-			cntPerPage = "5";
+			cntPerPage = S_cntPerPage;
 		}
 		PagingDto dto = new PagingDto(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
 		
@@ -58,7 +62,7 @@ public class BoardController {
 			dto.setContent(content);
 			service.insertData(dto);
 			mv.setViewName("main");
-			mv.addObject("list", service.selectData());
+			select(mv, S_nowPage, S_cntPerPage);
 		} else {
 			mv.setViewName("create");
 			mv.addObject("check", "false");
@@ -70,7 +74,9 @@ public class BoardController {
 	public ModelAndView search(ModelAndView mv, HttpServletRequest request) throws Exception {
 		String title = request.getParameter("searchData");
 		mv.setViewName("main");
-		mv.addObject("list", service.searchData(title));
+//		mv.addObject("list", service.searchData(title));
+//		List<BoardDto> list = service.searchData(title);
+//		PagingDto dto = new PagingDto(list.size(), Integer.parseInt(S_nowPage), Integer.parseInt(S_cntPerPage));
 		return mv;
 	}
 
@@ -88,7 +94,7 @@ public class BoardController {
 		int num = Integer.parseInt(request.getParameter("num"));
 		service.deleteData(num);
 		mv.setViewName("main");
-		mv.addObject("list", service.selectData());
+		select(mv, S_nowPage, S_cntPerPage);
 		return mv;
 	}
 	

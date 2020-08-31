@@ -42,10 +42,6 @@
 	
 	<!-- 페이징 처리 후 게시글 조회 -->
 	<select id="selectBoard" resultType="com.sunghyun.board.dto.BoardDto" parameterType="com.sunghyun.board.dto.PagingDto">
-		select * from (
-			select count(*) rn, A.* from (
-				select * from board order by num desc
-			) A
-		) B where rn between #{start} and #{end}
+		select * from board order by num desc limit #{start}, #{end}
 	</select>
 </mapper>
