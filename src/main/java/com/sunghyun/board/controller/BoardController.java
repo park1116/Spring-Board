@@ -71,13 +71,25 @@ public class BoardController {
 	}
 	
 	@RequestMapping("/search")
-	public ModelAndView search(ModelAndView mv, HttpServletRequest request) throws Exception {
+	public ModelAndView search(ModelAndView mv, 
+			@RequestParam(value="nowPage", required=false)String nowPage, 
+			@RequestParam(value="cntPerPage", required=false)String cntPerPage, HttpServletRequest request) throws Exception {
 		String title = request.getParameter("searchData");
-		List<BoardDto> list = service.searchData(title);
-		PagingDto dto = new PagingDto(list.size(), Integer.parseInt(S_nowPage), Integer.parseInt(S_cntPerPage));
-		mv.setViewName("main");
+		int total = service.countSearchData(title);
+		if (nowPage == null && cntPerPage == null) {
+			nowPage = S_nowPage;
+			cntPerPage = S_cntPerPage;
+		} else if (nowPage == null) {
+			nowPage = S_nowPage;
+		} else if (cntPerPage == null) { 
+			cntPerPage = S_cntPerPage;
+		}
+		PagingDto dto = new PagingDto(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+		dto.setSearchData(title);
+		
+		mv.setViewName("search");
 		mv.addObject("paging", dto);
-		mv.addObject("list", service.searchData(title));
+		mv.addObject("list", service.searchData(dto));
 		return mv;
 	}
 

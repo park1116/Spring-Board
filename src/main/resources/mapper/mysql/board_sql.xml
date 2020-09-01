@@ -19,8 +19,11 @@
         select * from board where title=#{title} and num not in (#{num})
     </select>
     
-    <select id="searchData" resultType="com.sunghyun.board.dto.BoardDto" parameterType="string">
-		select * from board where title like CONCAT('%',#{searchData},'%') order by num desc
+    <select id="countSearchData" resultType="int" parameterType="string">
+		select count(*) from board where title like CONCAT('%',#{searchData},'%')
+	</select>
+    <select id="searchData" resultType="com.sunghyun.board.dto.BoardDto" parameterType="com.sunghyun.board.dto.PagingDto">
+		select * from board where title like CONCAT('%',#{searchData},'%') order by num desc limit #{start}, #{end}
     </select>
   
   	<insert id="insertData" parameterType="com.sunghyun.board.dto.BoardDto">

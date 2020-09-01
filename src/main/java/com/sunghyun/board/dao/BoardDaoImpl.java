@@ -20,8 +20,13 @@ public class BoardDaoImpl implements BoardDao{
 	}
 	
 	@Override
-	public List<BoardDto> searchData(String title) throws Exception {
-		return sqlSession.selectList("sql.searchData", title);
+	public int countSearchData(String title) throws Exception {
+		return sqlSession.selectOne("sql.countSearchData", title);
+	}
+	
+	@Override
+	public List<BoardDto> searchData(PagingDto dto) throws Exception {
+		return sqlSession.selectList("sql.searchData", dto);
 	}
 	
 	@Override
@@ -56,12 +61,12 @@ public class BoardDaoImpl implements BoardDao{
 	}
 
 	@Override
-	public int countBoard() {
+	public int countBoard() throws Exception {
 		return sqlSession.selectOne("sql.countBoard");
 	}
 
 	@Override
-	public List<BoardDto> selectBoard(PagingDto dto) {
+	public List<BoardDto> selectBoard(PagingDto dto) throws Exception {
 		return sqlSession.selectList("sql.selectBoard", dto);
 	}
 }

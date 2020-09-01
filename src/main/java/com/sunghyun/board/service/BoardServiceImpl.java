@@ -18,10 +18,16 @@ public class BoardServiceImpl implements BoardService{
 	public List<BoardDto> selectData() throws Exception {
 		return boardDao.selectData();
 	}
+
+
+	@Override
+	public int countSearchData(String title) throws Exception {
+		return boardDao.countSearchData(title);
+	}
 	
 	@Override
-	public List<BoardDto> searchData(String title) throws Exception {
-		return boardDao.searchData(title);
+	public List<BoardDto> searchData(PagingDto dto) throws Exception {
+		return boardDao.searchData(dto);
 	}
 
 	@Override
@@ -56,12 +62,12 @@ public class BoardServiceImpl implements BoardService{
 	}
 
 	@Override
-	public int countBoard() {
+	public int countBoard() throws Exception {
 		return boardDao.countBoard();
 	}
 
 	@Override
-	public List<BoardDto> selectBoard(PagingDto dto) {
+	public List<BoardDto> selectBoard(PagingDto dto) throws Exception {
 		return boardDao.selectBoard(dto);
 	}
 }
