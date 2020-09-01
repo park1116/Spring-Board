@@ -19,7 +19,7 @@ public class BoardController {
 	@Resource(name = "boardService")
 	private BoardService service;
 	private static String S_nowPage = "1";
-	private static String S_cntPerPage = "3";
+	private static String S_cntPerPage = "5";
 
 	@RequestMapping("/")
 	public ModelAndView select(ModelAndView mv, 
@@ -73,10 +73,11 @@ public class BoardController {
 	@RequestMapping("/search")
 	public ModelAndView search(ModelAndView mv, HttpServletRequest request) throws Exception {
 		String title = request.getParameter("searchData");
+		List<BoardDto> list = service.searchData(title);
+		PagingDto dto = new PagingDto(list.size(), Integer.parseInt(S_nowPage), Integer.parseInt(S_cntPerPage));
 		mv.setViewName("main");
-//		mv.addObject("list", service.searchData(title));
-//		List<BoardDto> list = service.searchData(title);
-//		PagingDto dto = new PagingDto(list.size(), Integer.parseInt(S_nowPage), Integer.parseInt(S_cntPerPage));
+		mv.addObject("paging", dto);
+		mv.addObject("list", service.searchData(title));
 		return mv;
 	}
 
